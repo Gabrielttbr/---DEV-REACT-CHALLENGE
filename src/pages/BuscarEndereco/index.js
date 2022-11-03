@@ -25,9 +25,16 @@ const BuscarEndereco = () => {
         event.stopPropagation();
         VIACEP.get(`/${cep}/json/`)
         .then((res) => {
-            setRespostaVIACEP(res.data)
-            setResultCep(true)
-        }).catch((erro) => console.log(erro))
+            console.log(res)
+            if(res.data.erro){
+                alert("Não encontramos o cep")
+                return window.location.reload()
+            }else{
+                setRespostaVIACEP(res.data)
+                setResultCep(true)
+            }
+        })
+        .catch((erro) => alert("Erro "+ erro))
     }
     return (
         <section>
