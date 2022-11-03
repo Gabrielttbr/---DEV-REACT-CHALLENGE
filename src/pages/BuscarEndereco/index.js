@@ -25,7 +25,6 @@ const BuscarEndereco = () => {
         event.stopPropagation();
         VIACEP.get(`/${cep}/json/`)
         .then((res) => {
-            console.log(res)
             if(res.data.erro){
                 alert("Não encontramos o cep")
                 return window.location.reload()
