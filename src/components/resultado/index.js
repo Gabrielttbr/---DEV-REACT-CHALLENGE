@@ -4,7 +4,7 @@ import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import ButtonComponent from '../button';
 //css
 import * as S from './styled'
-const ResultadoCep = ({lagradouro, municipio, bairro, cep}) => {
+const ResultadoCep = ({resposta}) => {
     const [validated, setValidated] = useState(false);
 
     const novaBuscaClick = () => {
@@ -29,11 +29,11 @@ const ResultadoCep = ({lagradouro, municipio, bairro, cep}) => {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Row className="mb-3">
                 <Form.Group md="4" controlId="validationCustom01">
-                    <Form.Label>Lagradouro</Form.Label>
+                    <Form.Label>Logradouro</Form.Label>
                     <Form.Control
                         required
                         type="text"
-                        defaultValue={lagradouro}
+                        defaultValue={resposta.logradouro}
                         disabled
                     />
                 </Form.Group>
@@ -42,14 +42,14 @@ const ResultadoCep = ({lagradouro, municipio, bairro, cep}) => {
                     <Form.Control
                         disabled
                         type="text"
-                        defaultValue={municipio}
+                        defaultValue={resposta.localidade}
                     />
                 </Form.Group>
                 <Form.Group md="4" controlId="validationCustomUsername">
                     <Form.Label>Bairro</Form.Label>
                     <Form.Control
                         type="text"
-                        defaultValue={bairro}
+                        defaultValue={resposta.bairro}
                         disabled
                     />
 
@@ -60,7 +60,7 @@ const ResultadoCep = ({lagradouro, municipio, bairro, cep}) => {
                     <Form.Label>CEP</Form.Label>
                     <Form.Control 
                     type="text" 
-                    defaultValue={cep} 
+                    defaultValue={resposta.cep} 
                     disabled
                     />
                   

@@ -15,3 +15,12 @@ export const textoFormate = styled.p`
     font-size: 18px;
 
 `
+export const ContainerButtons = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        margin: 10px
+    }
+
+`
