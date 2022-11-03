@@ -1,6 +1,6 @@
 //Components
 import React, { useState } from 'react';
-import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
+import {Form, Row } from 'react-bootstrap';
 import ButtonComponent from '../button';
 //css
 import * as S from './styled'
