@@ -1,62 +1,55 @@
+//Hoks
+import { useState } from 'react';
+
 //Components
-import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Form, Container } from 'react-bootstrap'
+import { cepMask } from '../../components/mascaraFomulario/cepMaks';
 import MenuDeNavegacao from "../../components/menudenavegacao";
+import ButtonComponent from '../../components/button';
 import Rodape from "../../components/rodape";
-import { Formik } from 'formik';
-import * as yup from 'yup'
+import ResultadoCep from '../../components/resultado';
+
 //style
 import * as S from './styled'
 
 const BuscarEndereco = () => {
-
-    const valoresInciais = {
-        cep: 'sdasd'
+    const [validated, setValidated] = useState(false);
+    const [cepValue, setCepValue] = useState('');
+    const [resultCep, setResultCep] = useState(false)
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        event.preventDefault();
+        setResultCep(true)
     }
-    const esquemaValidacao = yup.object().shape({
-        cep: yup.number().required()
-    })
-
-
     return (
         <section>
             <MenuDeNavegacao />
             <S.Wrapper>
-                <Formik
-                    validationSchema={esquemaValidacao}
-                    onSubmit={() => {
-                        console.log(esquemaValidacao)
-                    }}
-                    initialValues={valoresInciais}>
-                    {({
-                        handleSubmit,
-                        handleChange,
-                        handleBlur,
-                        values,
-                        touched,
-                        isValid,
-                        errors,
-                    }) => (
-                        <Form noValidate onSubmit={handleSubmit}>
-                            <Row className="mb-3">
-                                <Form.Group as={Col} md="4" controlId="cep">
-                                    <Form.Label>cep</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        id="cep"
-                                        name="cep"
-                                        value={values.cep}
-                                        onChange={handleChange}
-                                        isValid={touched.cep && !errors.cep}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.cep}
-                                    </Form.Control.Feedback>
-                                </Form.Group>
-                            </Row>
-                            <Button type="submit">Submit form</Button>
-                        </Form>
-                    )}
-                </Formik>
+                <Container>
+                    <S.textoFormate> Início > Buscador Endereço > {cepValue.length == 9? "Cep " +cepValue : null}</S.textoFormate>
+                    { !resultCep &&
+                        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                            <Form.Group className="mb-3" controlId="formBasicCep">
+                                <Form.Label>CEP</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    maxLength={9}
+                                    minLength={9}
+                                    onChange={(e) => setCepValue(cepMask(e.target.value))}
+                                    value={cepValue}
+                                />
+                            </Form.Group>
+                            <ButtonComponent type={"submit"} value={"buscar"} ></ButtonComponent>
+                            <ButtonComponent type={"submit"} value={"voltar"} navegation="/home"></ButtonComponent>
+                        </Form> 
+                    }
+                    {resultCep && (<ResultadoCep/>)}
+                </Container>
             </S.Wrapper>
             <Rodape />
         </section>

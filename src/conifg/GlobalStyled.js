@@ -6,5 +6,11 @@ export const GlobalStyle = createGlobalStyle`
         margin:0;
         font-family: Arial, sans-serif;
     }
+    .white{
+        color: #fff !important;
+        text-decoration: none;
+        width:100% !important;
+        height:100% !important;
+    }
 
 `

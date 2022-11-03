@@ -9,12 +9,12 @@ const MenuDeNavegacao = () => {
         <S.Menu>
             <Container>
                 <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="#home">BuscadorCEP</Navbar.Brand>
+                    <Navbar.Brand><Link className="navbar-brand" to="/home">BuscadorCEP</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home"> <Link to="/BuscarEndereco">Buscar Endereço</Link></Nav.Link>
-                            <Nav.Link href="#link">Buscar CEP</Nav.Link>
+                            <Link className="nav-link" to="/BuscarEndereco">Buscar Endereço</Link>
+                            <Link className="nav-link" to="/BuscarCep"> Buscar Cep</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
